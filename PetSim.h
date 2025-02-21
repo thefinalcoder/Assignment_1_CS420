@@ -10,18 +10,18 @@ class PetSim
 {
     private:
         int hungerLvl;
-        int bordemLvl;
+        int boredomLvl;
         string name;
 
         int PetMood() const;
         void PassTime(int time = 1 );
 
         public:
-            PetSim(int hunger, int bordem, string petName);
+            PetSim(int hunger, int boredom, string petName);
             void Talk();
             void FeedPet(int food = 4);
             void Play(int fun = 4);
-            void ShowPetStats() const;
+            void DisplayPetBehavior() const;
             void Menu();
 
 };

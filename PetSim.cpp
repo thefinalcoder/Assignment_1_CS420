@@ -2,26 +2,33 @@
 
 int PetSim::PetMood() const
 {
-    return hungerLvl + bordemLvl;
+    return hungerLvl + boredomLvl;
 }
 
 void PetSim::PassTime(int time)
 {
     hungerLvl += time;
-    bordemLvl += time;
+    boredomLvl += time;
 }
 
 PetSim::PetSim(int hunger, int bordem, string petName)
 {
     hungerLvl = hunger;
-    bordemLvl = bordem;
+    boredomLvl = bordem;
     name = petName;
 }
 
-void PetSim::Talk()
-{
-    cout << "Hello, my name is " << name << "!" << endl;
-    cout << "My mood is " << PetMood() << endl;
+void PetSim::Talk() {
+    cout << name << " says: ";
+    int mood = PetMood();
+    if (mood < 7)
+        cout << "I'm happy!" << endl;
+    else if (mood < 16)
+        cout << "I'm okay." << endl;
+    else if (mood < 21)
+        cout << "I'm frustrated!" << endl;
+    else
+        cout << "I'm mad!" << endl;
     PassTime();
 }
 
@@ -39,50 +46,41 @@ void PetSim::FeedPet(int food)
 void PetSim::Play(int fun)
 {
     cout << "You play with " << name << "." << endl;
-    bordemLvl -= fun;
-    if (bordemLvl < 0)
+    boredomLvl -= fun;
+    if (boredomLvl < 0)
     {
-        bordemLvl = 0;
+        boredomLvl = 0;
     }
+    cout << "You played with " << name << ". Boredom level now: " << boredomLvl << endl;
     PassTime();
 }
 
-void PetSim::ShowPetStats() const
+void PetSim::DisplayPetBehavior() const
 {
-    cout << "Name: " << name << endl;
-    cout << "Hunger Level: " << hungerLvl << endl;
-    cout << "Bordem Level: " << bordemLvl << endl;
+    cout << name << "'s Hunger Level: " << hungerLvl << ", Boredom Level: " << boredomLvl << endl;
+    if (hungerLvl < 3 && boredomLvl < 3)
+        cout << name << " is happy and content." << endl;
+    else if (hungerLvl >= 11)
+        cout << name << " is very hungry!" << endl;
+    else if (boredomLvl >= 11)
+        cout << name << " is very bored!" << endl;
+    else
+        cout << name << " is doing okay." << endl;
 }
 
-void PetSim::Menu()
-{
+void PetSim::Menu() {
     int choice;
-    cout << "1. Talk to " << name << endl;
-    cout << "2. Feed " << name << endl;
-    cout << "3. Play with " << name << endl;
-    cout << "4. Show " << name << " stats" << endl;
-    cout << "5. Exit" << endl;
-    cout << "Enter your choice: ";
-    cin >> choice;
+    do {
+        cout << "\nMenu:\n1. Talk\n2. Feed\n3. Play\n4. Display Behavior\n5. Quit\nChoice: ";
+        cin >> choice;
+        switch (choice) {
+            case 1: Talk(); break;
+            case 2: FeedPet(); break;
+            case 3: Play(); break;
+            case 4: DisplayPetBehavior(); break;
+            case 5: cout << "Goodbye!" << endl; break;
+            default: cout << "Invalid choice! Try again." << endl;
+        }
+    } while (choice != 5);
 
-    switch (choice)
-    {
-        case 1:
-            Talk();
-            break;
-        case 2:
-            FeedPet();
-            break;
-        case 3:
-            Play();
-            break;
-        case 4:
-            ShowPetStats();
-            break;
-        case 5:
-            cout << "Goodbye!" << endl;
-            break;
-        default:
-            cout << "Invalid choice." << endl;
-    }
-}
+};

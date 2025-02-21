@@ -4,16 +4,16 @@ int main()
 {
     string name;
     int hunger;
-    int bordem;
+    int boredom;
 
     cout << "Enter the name of your pet: ";
     cin >> name;    
     cout << "Enter the hunger level of your pet: ";
     cin >> hunger;
     cout << "Enter the bordem level of your pet: ";
-    cin >> bordem;
+    cin >> boredom;
 
-    PetSim pet(hunger, bordem, name);
+    PetSim pet(hunger, boredom, name);
     pet.Menu();
 
     return 0;
