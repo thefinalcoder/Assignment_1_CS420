@@ -22,13 +22,13 @@ void PetSim::Talk() {
     cout << name << " says: ";
     int mood = PetMood();
     if (mood < 7)
-        cout << "I'm happy!" << endl;
+        cout << "I am happy! :D" << endl;
     else if (mood < 16)
-        cout << "I'm okay." << endl;
+        cout << "I am okay :P." << endl;
     else if (mood < 21)
-        cout << "I'm frustrated!" << endl;
+        cout << "I am frustrated! :/" << endl;
     else
-        cout << "I'm mad!" << endl;
+        cout << "I am mad! >:(" << endl;
     PassTime();
 }
 

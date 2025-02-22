@@ -14,16 +14,28 @@ class PetSim
         string name;
 
         int PetMood() const;
-        void PassTime(int time = 1 );
+        void PassTime(int time = 1);
 
-        public:
-            PetSim(int hunger, int boredom, string petName);
-            void Talk();
-            void FeedPet(int food = 4);
-            void Play(int fun = 4);
-            void DisplayPetBehavior() const;
-            void Menu();
+    public:
+        // Constructors
+        PetSim(int hunger, int boredom, string petName);
+        
+        // Setters
+        void setHungerLvl(int hunger);
+        void setBoredomLvl(int boredom);
+        void setName(string petName);
 
+        // Getters
+        int getHungerLvl() const;
+        int getBoredomLvl() const;
+        string getName() const;
+
+        // Other functions
+        void Talk();
+        void FeedPet(int food = 4);
+        void Play(int fun = 4);
+        void DisplayPetBehavior() const;
+        void Menu();
 };
 
 #endif // PETSIM_H
