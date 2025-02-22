@@ -2,25 +2,31 @@
 
 int main()
 {
-    string name;
-    string input;
-    int hunger = 0;  // Default values
-    int boredom = 0;
+    string name;       // Variable to store the pet's name
+    string input;      // Variable to store user input
+    int hunger = 0;    // Initial hunger level
+    int boredom = 0;   // Initial boredom level
 
-    cout << "Enter your pet's name (Press Enter for default 'Pet'): ";
+    // Prompt the user to enter the pet's name
+    cout << "Enter your pet's name (Default 'Pet'): ";
     getline(cin, name);
-    if (name.empty()) name = "Pet";
+    if (name.empty()) name = "Pet";  // Set default name if none is provided
 
-    cout << "Enter hunger level (Press Enter for default " << hunger << "): ";
+    // Prompt the user to enter the pet's hunger level
+    cout << "Enter hunger level (Default " << hunger << "): ";
     getline(cin, input);
-    if (!input.empty()) hunger = stoi(input);
+    if (!input.empty()) hunger = stoi(input);  // Set hunger level if provided
 
-    cout << "Enter boredom level (Press Enter for default " << boredom << "): ";
+    // Prompt the user to enter the pet's boredom level
+    cout << "Enter boredom level (Default " << boredom << "): ";
     getline(cin, input);
-    if (!input.empty()) boredom = stoi(input);
+    if (!input.empty()) boredom = stoi(input);  // Set boredom level if provided
 
+    // Create a PetSim object with the provided or default values
     PetSim pet(hunger, boredom, name);
+    
+    // Display the menu for interacting with the pet
     pet.Menu();
 
-    return 0;
+    return 0;  // End of the program
 }

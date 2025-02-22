@@ -1,16 +1,19 @@
 #include "PetSim.h"
 
+// Returns the pet's mood based on hunger and boredom levels
 int PetSim::PetMood() const
 {
     return hungerLvl + boredomLvl;
 }
 
+// Increases hunger and boredom levels by the specified time
 void PetSim::PassTime(int time)
 {
     hungerLvl += time;
     boredomLvl += time;
 }
 
+// Constructor to initialize the pet's hunger, boredom levels, and name
 PetSim::PetSim(int hunger, int bordem, string petName)
 {
     hungerLvl = hunger;
@@ -18,6 +21,7 @@ PetSim::PetSim(int hunger, int bordem, string petName)
     name = petName;
 }
 
+// Displays the pet's mood based on its current state
 void PetSim::Talk() {
     cout << name << " says: ";
     int mood = PetMood();
@@ -32,9 +36,10 @@ void PetSim::Talk() {
     PassTime();
 }
 
+// Feeds the pet and decreases its hunger level
 void PetSim::FeedPet(int food)
 {
-    cout << "You feed " << name << " some food." << endl;
+    cout << "You feed " << name << " some yummy food." << endl;
     hungerLvl -= food;
     if (hungerLvl < 0)
     {
@@ -43,6 +48,7 @@ void PetSim::FeedPet(int food)
     PassTime();
 }
 
+// Plays with the pet and decreases its boredom level
 void PetSim::Play(int fun)
 {
     cout << "You play with " << name << "." << endl;
@@ -55,6 +61,7 @@ void PetSim::Play(int fun)
     PassTime();
 }
 
+// Displays the pet's current hunger and boredom levels and its behavior
 void PetSim::DisplayPetBehavior() const
 {
     cout << name << "'s Hunger Level: " << hungerLvl << ", Boredom Level: " << boredomLvl << endl;
@@ -68,6 +75,7 @@ void PetSim::DisplayPetBehavior() const
         cout << name << " is doing okay." << endl;
 }
 
+// Displays a menu for interacting with the pet and processes user input
 void PetSim::Menu() {
     int choice;
     do {
@@ -82,5 +90,4 @@ void PetSim::Menu() {
             default: cout << "Invalid choice! Try again." << endl;
         }
     } while (choice != 5);
-
-};
+}
